@@ -1,0 +1,57 @@
+<% module_namespacing do -%>
+# frozen_string_literal: true
+
+class Api::V1::<%= resource_controller_class_name %>Controller < ApplicationController
+  include Pagy::Backend
+
+  PERMITTED_ATTRIBUTES = [
+<% permitted_attributes.each do |attribute| -%>
+    :<%= attribute %>,
+<% end -%>
+  ].freeze
+
+  before_action :set_<%= singular_name %>, only: %i[show update destroy]
+
+  def index
+    query = <%= class_name %>.includes(associations_for_index).ransack(params[:q])
+    render ResponseService.pagy_index(query.result, params, self, blueprint: <%= class_name %>Blueprint)
+  end
+
+  def show
+    render ResponseService.success(
+      data: @<%= singular_name %>,
+      message: "<%= resource_human_name %> encontrado com sucesso",
+      blueprint: <%= class_name %>Blueprint
+    )
+  end
+
+  def create
+    result = <%= resource_collection_module_name %>::CreateService.call(params: <%= singular_name %>_params)
+    render ResponseService.handle_service_result(result, blueprint: <%= class_name %>Blueprint)
+  end
+
+  def update
+    result = <%= resource_collection_module_name %>::UpdateService.call(<%= singular_name %>: @<%= singular_name %>, params: <%= singular_name %>_params)
+    render ResponseService.handle_service_result(result, blueprint: <%= class_name %>Blueprint)
+  end
+
+  def destroy
+    result = <%= resource_collection_module_name %>::DestroyService.call(<%= singular_name %>: @<%= singular_name %>)
+    render ResponseService.handle_service_result(result)
+  end
+
+  private
+
+  def set_<%= singular_name %>
+    @<%= singular_name %> = <%= class_name %>.find(params[:id])
+  end
+
+  def associations_for_index
+    @associations_for_index ||= <%= class_name %>.reflect_on_all_associations(:belongs_to).map(&:name)
+  end
+
+  def <%= singular_table_name %>_params
+    params.require(:<%= singular_table_name %>).permit(*PERMITTED_ATTRIBUTES)
+  end
+end
+<% end -%>

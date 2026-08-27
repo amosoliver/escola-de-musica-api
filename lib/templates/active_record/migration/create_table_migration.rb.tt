@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    create_table :<%= table_name %> do |t|
+<% attributes.each do |attribute| -%>
+<% if attribute.name != "deleted_at" -%>
+<% if attribute.type == :references -%>
+<% if self_referential_attribute?(attribute) -%>
+        t.references :<%= attribute.name %>, foreign_key: { to_table: :<%= table_name %> }
+<% else -%>
+        t.references :<%= attribute.name %>, foreign_key: true
+<% end -%>
+<% else -%>
+        t.<%= attribute.type %> :<%= attribute.name %>
+<% end -%>
+<% end -%>
+<% end -%>
+        t.string :created_by
+        t.string :updated_by
+        t.datetime :deleted_at
+        t.timestamps
+    end
+
+    add_index :<%= table_name %>, :deleted_at
+  end
+end

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descricao: MyString
+  nome_rota: MyString
+  path: MyString
+  componente: MyString
+  metodo: MyString
+  requer_autorizacao: false
+  ativo: false
+
+two:
+  descricao: MyString
+  nome_rota: MyString
+  path: MyString
+  componente: MyString
+  metodo: MyString
+  requer_autorizacao: false
+  ativo: false

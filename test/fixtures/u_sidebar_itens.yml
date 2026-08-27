@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  u_sidebar: one
+  u_sidebar_item_pai: one
+  u_rota: one
+  descricao: MyString
+  icone: MyString
+  tipo: MyString
+  ordem: 1
+  expandido_padrao: false
+  ativo: false
+
+two:
+  u_sidebar: two
+  u_sidebar_item_pai: two
+  u_rota: two
+  descricao: MyString
+  icone: MyString
+  tipo: MyString
+  ordem: 1
+  expandido_padrao: false
+  ativo: false

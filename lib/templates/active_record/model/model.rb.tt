@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+class <%= class_name %> < ApplicationRecord
+  acts_as_paranoid
+
+<% attributes.select { |attribute| attribute.type == :references }.each do |attribute| -%>
+<% if self_referential_attribute?(attribute) -%>
+  belongs_to :<%= attribute.name %>, class_name: "<%= class_name %>", optional: true
+<% else -%>
+  belongs_to :<%= attribute.name %>
+<% end -%>
+<% end -%>
+end

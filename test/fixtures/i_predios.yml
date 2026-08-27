@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  g_unidade_gestora: one
+  g_tipo_predio: one
+  g_situacao_predio: one
+  nome: MyString
+  latitude: 9.99
+  longitude: 9.99
+  cep: MyString
+  logradouro: MyString
+  g_bairro: one
+  numero: MyString
+  complemento: MyString
+  g_cidade: one
+  g_pais: one
+  telefone_contato: MyString
+  email_responsavel: MyString
+  data_inicio: 2026-08-26
+  data_fim: 2026-08-26
+  principal: false
+  ativo: false
+
+two:
+  g_unidade_gestora: two
+  g_tipo_predio: two
+  g_situacao_predio: two
+  nome: MyString
+  latitude: 9.99
+  longitude: 9.99
+  cep: MyString
+  logradouro: MyString
+  g_bairro: two
+  numero: MyString
+  complemento: MyString
+  g_cidade: two
+  g_pais: two
+  telefone_contato: MyString
+  email_responsavel: MyString
+  data_inicio: 2026-08-26
+  data_fim: 2026-08-26
+  principal: false
+  ativo: false

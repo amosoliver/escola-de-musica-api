@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  u_template: one
+  descricao: MyString
+  chave: MyString
+  posicao: MyString
+  ativo: false
+
+two:
+  u_template: two
+  descricao: MyString
+  chave: MyString
+  posicao: MyString
+  ativo: false

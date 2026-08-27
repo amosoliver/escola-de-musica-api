@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+module <%= resource_collection_module_name %>
+  class DestroyService
+    def self.call(<%= singular_name %>:)
+      new(<%= singular_name %>:).call
+    end
+
+    def initialize(<%= singular_name %>:)
+      @<%= singular_name %> = <%= singular_name %>
+    end
+
+    def call
+      if <%= singular_name %>.destroy
+        return Result.success(
+          nil,
+          HttpStatus::NO_CONTENT,
+          "<%= resource_human_name %> removido com sucesso"
+        )
+      end
+
+      Result.failure(
+        <%= singular_name %>.errors.full_messages,
+        HttpStatus::UNPROCESSABLE_ENTITY,
+        "Nao foi possivel remover <%= resource_human_name.downcase %>"
+      )
+    end
+
+    private
+
+    attr_reader :<%= singular_name %>
+  end
+end

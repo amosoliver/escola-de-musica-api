@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  u_perfil: one
+  g_unidade_gestora: one
+  ativo: false
+
+two:
+  user: two
+  u_perfil: two
+  g_unidade_gestora: two
+  ativo: false

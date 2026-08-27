@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  g_unidade_gestora: one
+  tipo_unidade: MyString
+  nome: MyString
+  razao_social: MyString
+  nome_fantasia: MyString
+  cnpj: MyString
+  logo: MyString
+  telefone: MyString
+  whatsapp: MyString
+  email: MyString
+  site: MyString
+  responsavel_nome: MyString
+  status: MyString
+  identidade_visual: 
+
+two:
+  g_unidade_gestora: two
+  tipo_unidade: MyString
+  nome: MyString
+  razao_social: MyString
+  nome_fantasia: MyString
+  cnpj: MyString
+  logo: MyString
+  telefone: MyString
+  whatsapp: MyString
+  email: MyString
+  site: MyString
+  responsavel_nome: MyString
+  status: MyString
+  identidade_visual: 

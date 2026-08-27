@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class <%= class_name %>Blueprint < ApplicationBlueprint
+  identifier :id
+<% if blueprint_fields.any? -%>
+  fields <%= blueprint_fields.map { |attr| ":#{attr.name}" }.join(", ") %>
+<% end -%>
+<% belongs_to_attributes.each do |attr| -%>
+<% if self_referential_attribute?(attr) -%>
+  association :<%= attr.name %>, blueprint: <%= class_name %>Blueprint
+<% else -%>
+  association :<%= attr.name %>, blueprint: <%= attr.name.classify %>Blueprint
+<% end -%>
+<% end -%>
+end

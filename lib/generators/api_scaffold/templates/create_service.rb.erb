@@ -1,0 +1,35 @@
+# frozen_string_literal: true
+
+module <%= resource_collection_module_name %>
+  class CreateService
+    def self.call(params:)
+      new(params:).call
+    end
+
+    def initialize(params:)
+      @params = params
+    end
+
+    def call
+      <%= singular_name %> = <%= class_name %>.new(params)
+
+      if <%= singular_name %>.save
+        return Result.success(
+          <%= singular_name %>,
+          HttpStatus::CREATED,
+          "<%= resource_human_name %> criado com sucesso"
+        )
+      end
+
+      Result.failure(
+        <%= singular_name %>.errors.full_messages,
+        HttpStatus::UNPROCESSABLE_ENTITY,
+        "Nao foi possivel criar <%= resource_human_name.downcase %>"
+      )
+    end
+
+    private
+
+    attr_reader :params
+  end
+end

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  i_bloco: one
+  g_tipo_ambiente_predial: one
+  descricao: MyString
+  comprimento: 9.99
+  largura: 9.99
+  metros_quadrados: 9.99
+  capacidade: 1
+  permite_reserva: false
+  ativo: false
+
+two:
+  i_bloco: two
+  g_tipo_ambiente_predial: two
+  descricao: MyString
+  comprimento: 9.99
+  largura: 9.99
+  metros_quadrados: 9.99
+  capacidade: 1
+  permite_reserva: false
+  ativo: false
