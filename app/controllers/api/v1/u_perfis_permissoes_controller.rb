@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UPerfisPermissoesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :u_perfil_id,
@@ -18,7 +18,7 @@ class Api::V1::UPerfisPermissoesController < ApplicationController
   def show
     render ResponseService.success(
       data: @u_perfil_permissao,
-      message: "U perfil permissao encontrado com sucesso",
+      message: "Perfil permissao encontrado com sucesso",
       blueprint: UPerfilPermissaoBlueprint
     )
   end

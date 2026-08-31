@@ -16,7 +16,7 @@ module GPaises
         return Result.success(
           g_pais,
           HttpStatus::OK,
-          "G pais atualizado com sucesso"
+          "Pais atualizado com sucesso"
         )
       end
 

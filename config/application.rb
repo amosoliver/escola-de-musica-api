@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require "dotenv/load"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,5 +23,15 @@ module EscolaDeMusicaApi
 
     config.autoload_paths << Rails.root.join("lib")
     config.active_job.queue_adapter = :sidekiq
+
+    config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "gmail.com",
+      user_name: ENV["SMTP_USERNAME"],
+      password: ENV["SMTP_PASSWORD"],
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
   end
 end

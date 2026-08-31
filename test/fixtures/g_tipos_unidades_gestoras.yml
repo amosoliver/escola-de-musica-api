@@ -1,0 +1,11 @@
+one:
+  codigo: ADMINISTRACAO
+  descricao: Administracao
+  created_by: fixture
+  updated_by: fixture
+
+two:
+  codigo: ESCOLA
+  descricao: Escola
+  created_by: fixture
+  updated_by: fixture

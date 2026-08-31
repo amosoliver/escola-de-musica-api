@@ -15,7 +15,7 @@ module UTemplates
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U template removido com sucesso"
+          "Template removido com sucesso"
         )
       end
 

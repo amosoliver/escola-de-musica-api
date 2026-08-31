@@ -17,7 +17,7 @@ module GCidades
         return Result.success(
           g_cidade,
           HttpStatus::CREATED,
-          "G cidade criado com sucesso"
+          "Cidade criada com sucesso"
         )
       end
 

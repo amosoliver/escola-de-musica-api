@@ -1,6 +1,4 @@
 class ResponseService
-  include Pagy::Backend
-
   def self.pagy_index(query_result, params, controller, blueprint: nil, before_serialize: nil)
     if query_result.empty?
       return success(

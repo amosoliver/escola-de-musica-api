@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V1::GCidadesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
-    :g_pais_id,
     :g_estado_id,
     :descricao,
-    :uf,
-    :codigo_ibge,
+    :codigo_ibge
   ].freeze
 
   before_action :set_g_cidade, only: %i[show update destroy]
@@ -21,7 +19,7 @@ class Api::V1::GCidadesController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_cidade,
-      message: "G cidade encontrado com sucesso",
+      message: "Cidade encontrada com sucesso",
       blueprint: GCidadeBlueprint
     )
   end

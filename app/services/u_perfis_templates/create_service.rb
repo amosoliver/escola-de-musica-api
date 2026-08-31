@@ -17,7 +17,7 @@ module UPerfisTemplates
         return Result.success(
           u_perfil_template,
           HttpStatus::CREATED,
-          "U perfil template criado com sucesso"
+          "Perfil template criado com sucesso"
         )
       end
 

@@ -15,7 +15,7 @@ module GPaises
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G pais removido com sucesso"
+          "Pais removido com sucesso"
         )
       end
 

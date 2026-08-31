@@ -1,0 +1,7 @@
+one:
+  e_saude_estudante: one
+  g_necessidade_especifica: one
+  observacao: Acompanha com terapeuta
+  laudo_arquivo: tea_joao.pdf
+  data_laudo: 2026-08-01
+  ativo: true

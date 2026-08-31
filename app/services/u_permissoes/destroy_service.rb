@@ -15,7 +15,7 @@ module UPermissoes
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U permissao removido com sucesso"
+          "Permissao removida com sucesso"
         )
       end
 

@@ -16,7 +16,7 @@ module UsersPerfis
         return Result.success(
           user_perfil,
           HttpStatus::OK,
-          "User perfil atualizado com sucesso"
+          "Perfil de usuario atualizado com sucesso"
         )
       end
 

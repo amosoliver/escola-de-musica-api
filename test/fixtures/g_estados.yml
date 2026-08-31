@@ -1,0 +1,11 @@
+one:
+  g_pais: one
+  descricao: Rondonia
+  uf: RO
+  codigo_ibge: "11"
+
+two:
+  g_pais: two
+  descricao: Acre
+  uf: AC
+  codigo_ibge: "12"

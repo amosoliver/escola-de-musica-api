@@ -1,0 +1,9 @@
+one:
+  descricao: Efetivo
+  codigo: EFETIVO
+  ativo: true
+
+two:
+  descricao: Temporario
+  codigo: TEMPORARIO
+  ativo: true

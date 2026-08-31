@@ -15,7 +15,7 @@ module UsersPerfis
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "User perfil removido com sucesso"
+          "Perfil de usuario removido com sucesso"
         )
       end
 

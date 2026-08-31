@@ -15,7 +15,7 @@ module GTiposPredios
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G tipo predio removido com sucesso"
+          "Tipo de predio removido com sucesso"
         )
       end
 

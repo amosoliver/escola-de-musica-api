@@ -16,7 +16,7 @@ module GPessoas
         return Result.success(
           g_pessoa,
           HttpStatus::OK,
-          "G pessoa atualizado com sucesso"
+          "Pessoa atualizada com sucesso"
         )
       end
 

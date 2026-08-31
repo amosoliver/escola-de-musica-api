@@ -15,7 +15,7 @@ module UPerfisTemplates
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U perfil template removido com sucesso"
+          "Perfil template removido com sucesso"
         )
       end
 

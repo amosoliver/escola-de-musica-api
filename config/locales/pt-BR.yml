@@ -1,2 +1,67 @@
 pt-BR:
   hello: "Ola mundo"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      required: "e obrigatorio(a)"
+      blank: "nao pode ficar em branco"
+      taken: "ja esta em uso"
+      invalid: "e invalido(a)"
+      wrong_length: "deve ter %{count} caracteres"
+      too_short: "deve ter no minimo %{count} caracteres"
+      too_long: "deve ter no maximo %{count} caracteres"
+      confirmation: "nao confere com a confirmacao"
+      record_invalid: "Registro invalido"
+  activemodel:
+    errors:
+      messages:
+        required: "e obrigatorio(a)"
+        blank: "nao pode ficar em branco"
+        taken: "ja esta em uso"
+        invalid: "e invalido(a)"
+        wrong_length: "deve ter %{count} caracteres"
+        too_short: "deve ter no minimo %{count} caracteres"
+        too_long: "deve ter no maximo %{count} caracteres"
+        confirmation: "nao confere com a confirmacao"
+  activerecord:
+    models:
+      user: "Usuario"
+      user_perfil: "Vinculo de usuario"
+      g_pessoa: "Pessoa"
+      g_unidade_gestora: "Unidade gestora"
+      u_perfil: "Perfil"
+    attributes:
+      user:
+        email: "E-mail"
+        cpf: "CPF"
+        password: "Senha"
+        password_confirmation: "Confirmacao da senha"
+        login: "Login"
+        g_pessoa: "Pessoa"
+      user_perfil:
+        user: "Usuario"
+        u_perfil: "Perfil"
+        g_unidade_gestora: "Unidade gestora"
+        ativo: "Ativo"
+      g_pessoa:
+        nome: "Nome"
+        cpf: "CPF"
+        email: "E-mail"
+        g_sexo: "Sexo"
+        g_bairro: "Bairro"
+      g_unidade_gestora:
+        nome: "Nome"
+        g_tipo_unidade_gestora: "Tipo de unidade gestora"
+      u_perfil:
+        descricao: "Descricao"
+        codigo: "Codigo"
+    errors:
+      messages:
+        required: "e obrigatorio(a)"
+        blank: "nao pode ficar em branco"
+        taken: "ja esta em uso"
+        invalid: "e invalido(a)"
+        wrong_length: "deve ter %{count} caracteres"
+        too_short: "deve ter no minimo %{count} caracteres"
+        too_long: "deve ter no maximo %{count} caracteres"
+        confirmation: "nao confere com a confirmacao"

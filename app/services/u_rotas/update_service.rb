@@ -16,7 +16,7 @@ module URotas
         return Result.success(
           u_rota,
           HttpStatus::OK,
-          "U rota atualizado com sucesso"
+          "Rota atualizada com sucesso"
         )
       end
 

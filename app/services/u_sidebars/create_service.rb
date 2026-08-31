@@ -17,7 +17,7 @@ module USidebars
         return Result.success(
           u_sidebar,
           HttpStatus::CREATED,
-          "U sidebar criado com sucesso"
+          "Sidebar criada com sucesso"
         )
       end
 

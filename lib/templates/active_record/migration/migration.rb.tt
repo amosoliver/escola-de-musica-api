@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
-  def change
-    # Adicione aqui o codigo da migration de forma reversivel
+  def up
+    # Adicione aqui o codigo da migration
+  end
+
+  def down
+    # Adicione aqui a reversao da migration
   end
 end

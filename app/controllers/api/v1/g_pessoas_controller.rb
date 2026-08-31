@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::GPessoasController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
+    :atualizar_g_pessoa,
     :nome,
     :nome_social,
     :cpf,
@@ -16,9 +17,10 @@ class Api::V1::GPessoasController < ApplicationController
     :cep,
     :logradouro,
     :numero,
-    :bairro,
-    :cidade,
-    :uf,
+    :g_bairro_id,
+    :u_perfil_id,
+    :g_unidade_gestora_id,
+    :ativo
   ].freeze
 
   before_action :set_g_pessoa, only: %i[show update destroy]
@@ -31,7 +33,7 @@ class Api::V1::GPessoasController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_pessoa,
-      message: "G pessoa encontrado com sucesso",
+      message: "Pessoa encontrada com sucesso",
       blueprint: GPessoaBlueprint
     )
   end

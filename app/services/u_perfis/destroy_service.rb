@@ -15,7 +15,7 @@ module UPerfis
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U perfil removido com sucesso"
+          "Perfil removido com sucesso"
         )
       end
 

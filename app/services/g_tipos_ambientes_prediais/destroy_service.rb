@@ -15,7 +15,7 @@ module GTiposAmbientesPrediais
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G tipo ambiente predial removido com sucesso"
+          "Tipo de ambiente predial removido com sucesso"
         )
       end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::GSexosController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -17,7 +17,7 @@ class Api::V1::GSexosController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_sexo,
-      message: "G sexo encontrado com sucesso",
+      message: "Sexo encontrado com sucesso",
       blueprint: GSexoBlueprint
     )
   end

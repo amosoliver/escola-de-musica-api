@@ -16,7 +16,7 @@ module IAmbientesPrediais
         return Result.success(
           i_ambiente_predial,
           HttpStatus::OK,
-          "I ambiente predial atualizado com sucesso"
+          "Ambiente predial atualizado com sucesso"
         )
       end
 

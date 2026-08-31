@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Devise.setup do |config|
-  config.mailer_sender = ENV.fetch("DEVISE_MAILER_SENDER", "no-reply@escolademusica.local")
+  config.mailer_sender = ENV.fetch("SMTP_USERNAME", ENV.fetch("DEVISE_MAILER_SENDER", "no-reply@escolademusica.local"))
+  config.mailer = "UserMailer"
   require "devise/orm/active_record"
 
   config.authentication_keys = [ :login ]
@@ -13,7 +14,10 @@ Devise.setup do |config|
   config.expire_all_remember_me_on_sign_out = true
   config.password_length = 6..128
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  config.reset_password_keys = [ :login ]
   config.reset_password_within = 6.hours
+  config.sign_in_after_reset_password = false
+  config.scoped_views = true
   config.navigational_formats = []
   config.sign_out_via = :delete
 end

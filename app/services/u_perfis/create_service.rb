@@ -17,7 +17,7 @@ module UPerfis
         return Result.success(
           u_perfil,
           HttpStatus::CREATED,
-          "U perfil criado com sucesso"
+          "Perfil criado com sucesso"
         )
       end
 

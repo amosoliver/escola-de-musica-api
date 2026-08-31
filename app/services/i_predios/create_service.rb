@@ -17,7 +17,7 @@ module IPredios
         return Result.success(
           i_predio,
           HttpStatus::CREATED,
-          "I predio criado com sucesso"
+          "Predio criado com sucesso"
         )
       end
 

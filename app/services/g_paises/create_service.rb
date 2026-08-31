@@ -17,7 +17,7 @@ module GPaises
         return Result.success(
           g_pais,
           HttpStatus::CREATED,
-          "G pais criado com sucesso"
+          "Pais criado com sucesso"
         )
       end
 

@@ -15,7 +15,7 @@ module IBlocos
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "I bloco removido com sucesso"
+          "Bloco removido com sucesso"
         )
       end
 

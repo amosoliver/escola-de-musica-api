@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 class Api::V1::GAndaresController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
-    :ordem,
+    :ordem
   ].freeze
 
   before_action :set_g_andar, only: %i[show update destroy]
 
   def index
-    query = GAndar.includes(associations_for_index).ransack(params[:q])
+    query = scoped_g_andares.ransack(params[:q])
     render ResponseService.pagy_index(query.result, params, self, blueprint: GAndarBlueprint)
   end
 
   def show
     render ResponseService.success(
       data: @g_andar,
-      message: "G andar encontrado com sucesso",
+      message: "Andar encontrado com sucesso",
       blueprint: GAndarBlueprint
     )
   end
@@ -46,6 +46,18 @@ class Api::V1::GAndaresController < ApplicationController
 
   def associations_for_index
     @associations_for_index ||= GAndar.reflect_on_all_associations(:belongs_to).map(&:name)
+  end
+
+  def scoped_g_andares
+    if params[:i_predio_id].present?
+      scoped_predios = tenant_scope(IPredio.all)
+      return GAndar.none if performed?
+
+      scoped_predios.find(params[:i_predio_id])
+      return GAndares::PorPredioQuery.call(i_predio_id: params[:i_predio_id])
+    end
+
+    GAndar.includes(associations_for_index)
   end
 
   def g_andar_params

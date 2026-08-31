@@ -15,7 +15,7 @@ module URotasPermissoes
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U rota permissao removido com sucesso"
+          "Permissao de rota removida com sucesso"
         )
       end
 

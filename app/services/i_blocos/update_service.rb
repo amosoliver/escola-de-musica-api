@@ -16,7 +16,7 @@ module IBlocos
         return Result.success(
           i_bloco,
           HttpStatus::OK,
-          "I bloco atualizado com sucesso"
+          "Bloco atualizado com sucesso"
         )
       end
 

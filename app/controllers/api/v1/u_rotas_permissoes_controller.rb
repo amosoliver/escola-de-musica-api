@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::URotasPermissoesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :u_rota_id,
@@ -18,7 +18,7 @@ class Api::V1::URotasPermissoesController < ApplicationController
   def show
     render ResponseService.success(
       data: @u_rota_permissao,
-      message: "U rota permissao encontrado com sucesso",
+      message: "Permissao de rota encontrada com sucesso",
       blueprint: URotaPermissaoBlueprint
     )
   end

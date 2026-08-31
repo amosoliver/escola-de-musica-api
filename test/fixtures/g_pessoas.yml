@@ -3,9 +3,10 @@
 one:
   nome: MyString
   nome_social: MyString
-  cpf: MyString
+  cpf: "11111111111"
   data_nascimento: 2026-08-26
   g_sexo: one
+  g_bairro: one
   email: MyString
   telefone: MyString
   whatsapp: MyString
@@ -13,16 +14,14 @@ one:
   cep: MyString
   logradouro: MyString
   numero: MyString
-  bairro: MyString
-  cidade: MyString
-  uf: MyString
 
 two:
   nome: MyString
   nome_social: MyString
-  cpf: MyString
+  cpf: "22222222222"
   data_nascimento: 2026-08-26
   g_sexo: two
+  g_bairro: two
   email: MyString
   telefone: MyString
   whatsapp: MyString
@@ -30,6 +29,3 @@ two:
   cep: MyString
   logradouro: MyString
   numero: MyString
-  bairro: MyString
-  cidade: MyString
-  uf: MyString

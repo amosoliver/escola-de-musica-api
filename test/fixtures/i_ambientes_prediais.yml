@@ -3,6 +3,7 @@
 one:
   i_bloco: one
   g_tipo_ambiente_predial: one
+  g_unidade_gestora: one
   descricao: MyString
   comprimento: 9.99
   largura: 9.99
@@ -14,6 +15,7 @@ one:
 two:
   i_bloco: two
   g_tipo_ambiente_predial: two
+  g_unidade_gestora: two
   descricao: MyString
   comprimento: 9.99
   largura: 9.99

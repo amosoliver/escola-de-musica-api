@@ -16,7 +16,7 @@ module UPerfisPermissoes
         return Result.success(
           u_perfil_permissao,
           HttpStatus::OK,
-          "U perfil permissao atualizado com sucesso"
+          "Perfil permissao atualizado com sucesso"
         )
       end
 

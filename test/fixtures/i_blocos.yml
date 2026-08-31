@@ -3,11 +3,13 @@
 one:
   i_predio: one
   g_andar: one
+  g_unidade_gestora: one
   descricao: MyString
   ativo: false
 
 two:
   i_predio: two
   g_andar: two
+  g_unidade_gestora: two
   descricao: MyString
   ativo: false

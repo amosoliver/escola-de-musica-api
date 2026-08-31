@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
-  def change
-    create_table :<%= table_name %> do |t|
+  def up
+    create_table :<%= table_name %>, if_not_exists: true do |t|
 <% attributes.each do |attribute| -%>
 <% if attribute.name != "deleted_at" -%>
 <% if attribute.type == :references -%>
@@ -22,6 +22,10 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
         t.timestamps
     end
 
-    add_index :<%= table_name %>, :deleted_at
+    add_index :<%= table_name %>, :deleted_at, if_not_exists: true
+  end
+
+  def down
+    drop_table :<%= table_name %>, if_exists: true
   end
 end

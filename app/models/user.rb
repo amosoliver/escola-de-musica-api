@@ -4,6 +4,8 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :g_pessoa, optional: true
+  has_many :users_perfis, dependent: :restrict_with_exception
+  has_many :u_perfis, through: :users_perfis
 
   attr_writer :login
 
@@ -16,6 +18,7 @@ class User < ApplicationRecord
 
   validates :cpf, presence: true, uniqueness: true, length: { is: 11 }
   validates :email, uniqueness: true, allow_blank: true
+  validates :g_pessoa_id, uniqueness: true, allow_nil: true
 
   def login
     @login || cpf || email
@@ -32,6 +35,12 @@ class User < ApplicationRecord
     query.find_by("lower(email) = :email OR cpf = :cpf", email: login.downcase, cpf: normalized_login)
   end
 
+  def self.send_reset_password_instructions(attributes = {})
+    recoverable = find_recoverable_for_password_reset(attributes)
+    recoverable.send_reset_password_instructions if recoverable.persisted?
+    recoverable
+  end
+
   def email_required?
     false
   end
@@ -41,6 +50,16 @@ class User < ApplicationRecord
   end
 
   private
+
+  def self.find_recoverable_for_password_reset(attributes)
+    login = attributes[:login].to_s.strip
+    return new.tap { |record| record.errors.add(:login, :blank) } if login.blank?
+
+    recoverable = find_for_database_authentication(login:)
+    return recoverable if recoverable.present?
+
+    new.tap { |record| record.errors.add(:login, :not_found) }
+  end
 
   def normalize_login_fields
     self.email = email.to_s.strip.downcase.presence

@@ -1,0 +1,7 @@
+one:
+  descricao: Mae
+  permite_outro: false
+
+two:
+  descricao: Outro
+  permite_outro: true

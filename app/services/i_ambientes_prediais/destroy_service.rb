@@ -15,7 +15,7 @@ module IAmbientesPrediais
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "I ambiente predial removido com sucesso"
+          "Ambiente predial removido com sucesso"
         )
       end
 

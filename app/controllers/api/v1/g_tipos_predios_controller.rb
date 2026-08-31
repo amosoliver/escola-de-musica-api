@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::GTiposPrediosController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -17,7 +17,7 @@ class Api::V1::GTiposPrediosController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_tipo_predio,
-      message: "G tipo predio encontrado com sucesso",
+      message: "Tipo de predio encontrado com sucesso",
       blueprint: GTipoPredioBlueprint
     )
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::GPaisesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -19,7 +19,7 @@ class Api::V1::GPaisesController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_pais,
-      message: "G pais encontrado com sucesso",
+      message: "Pais encontrado com sucesso",
       blueprint: GPaisBlueprint
     )
   end

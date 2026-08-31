@@ -16,7 +16,7 @@ module USidebars
         return Result.success(
           u_sidebar,
           HttpStatus::OK,
-          "U sidebar atualizado com sucesso"
+          "Sidebar atualizada com sucesso"
         )
       end
 

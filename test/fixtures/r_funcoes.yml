@@ -1,0 +1,9 @@
+one:
+  descricao: Professor
+  codigo: PROFESSOR
+  ativo: true
+
+two:
+  descricao: Coordenador
+  codigo: COORDENADOR
+  ativo: true

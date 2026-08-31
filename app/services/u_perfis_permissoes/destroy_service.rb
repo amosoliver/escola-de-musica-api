@@ -15,7 +15,7 @@ module UPerfisPermissoes
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U perfil permissao removido com sucesso"
+          "Perfil permissao removido com sucesso"
         )
       end
 

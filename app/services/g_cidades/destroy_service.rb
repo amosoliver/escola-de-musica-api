@@ -15,7 +15,7 @@ module GCidades
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G cidade removido com sucesso"
+          "Cidade removida com sucesso"
         )
       end
 

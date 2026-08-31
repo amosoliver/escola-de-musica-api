@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::IPrediosController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :g_unidade_gestora_id,
@@ -16,7 +16,6 @@ class Api::V1::IPrediosController < ApplicationController
     :numero,
     :complemento,
     :g_cidade_id,
-    :g_pais_id,
     :telefone_contato,
     :email_responsavel,
     :data_inicio,
@@ -28,25 +27,31 @@ class Api::V1::IPrediosController < ApplicationController
   before_action :set_i_predio, only: %i[show update destroy]
 
   def index
-    query = IPredio.includes(associations_for_index).ransack(params[:q])
+    query = scoped_i_predios.includes(associations_for_index).ransack(params[:q])
     render ResponseService.pagy_index(query.result, params, self, blueprint: IPredioBlueprint)
   end
 
   def show
     render ResponseService.success(
       data: @i_predio,
-      message: "I predio encontrado com sucesso",
+      message: "Predio encontrado com sucesso",
       blueprint: IPredioBlueprint
     )
   end
 
   def create
-    result = IPredios::CreateService.call(params: i_predio_params)
+    attributes = enforce_tenant_attribute!(i_predio_params.to_h.deep_symbolize_keys)
+    return if performed?
+
+    result = IPredios::CreateService.call(params: attributes)
     render ResponseService.handle_service_result(result, blueprint: IPredioBlueprint)
   end
 
   def update
-    result = IPredios::UpdateService.call(i_predio: @i_predio, params: i_predio_params)
+    attributes = enforce_tenant_attribute!(i_predio_params.to_h.deep_symbolize_keys)
+    return if performed?
+
+    result = IPredios::UpdateService.call(i_predio: @i_predio, params: attributes)
     render ResponseService.handle_service_result(result, blueprint: IPredioBlueprint)
   end
 
@@ -58,11 +63,15 @@ class Api::V1::IPrediosController < ApplicationController
   private
 
   def set_i_predio
-    @i_predio = IPredio.find(params[:id])
+    @i_predio = scoped_i_predios.find(params[:id])
   end
 
   def associations_for_index
     @associations_for_index ||= IPredio.reflect_on_all_associations(:belongs_to).map(&:name)
+  end
+
+  def scoped_i_predios
+    tenant_scope(IPredio.all)
   end
 
   def i_predio_params

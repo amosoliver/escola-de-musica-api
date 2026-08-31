@@ -17,7 +17,7 @@ module USidebarItens
         return Result.success(
           u_sidebar_item,
           HttpStatus::CREATED,
-          "U sidebar item criado com sucesso"
+          "Item de sidebar criado com sucesso"
         )
       end
 

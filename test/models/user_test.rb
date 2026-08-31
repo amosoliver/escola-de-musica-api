@@ -3,6 +3,10 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+  setup do
+    ActionMailer::Base.deliveries.clear
+  end
+
   test "normalizes cpf and email before validation" do
     user = User.new(cpf: "123.456.789-01", email: "  TESTE@EXAMPLE.COM  ", password: "102030")
 
@@ -25,5 +29,22 @@ class UserTest < ActiveSupport::TestCase
 
     assert_nil user.email
     assert user.valid?
+  end
+
+  test "sends reset password instructions using email or cpf login" do
+    user = users(:one)
+
+    result = User.send_reset_password_instructions(login: user.email)
+
+    assert_equal user, result
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_equal "Redefinicao de senha", ActionMailer::Base.deliveries.last.subject
+
+    ActionMailer::Base.deliveries.clear
+
+    result = User.send_reset_password_instructions(login: user.cpf)
+
+    assert_equal user, result
+    assert_equal 1, ActionMailer::Base.deliveries.size
   end
 end

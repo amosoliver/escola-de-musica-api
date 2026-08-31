@@ -17,7 +17,7 @@ module GAndares
         return Result.success(
           g_andar,
           HttpStatus::CREATED,
-          "G andar criado com sucesso"
+          "Andar criado com sucesso"
         )
       end
 

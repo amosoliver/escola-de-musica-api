@@ -17,7 +17,7 @@ module UsersPerfis
         return Result.success(
           user_perfil,
           HttpStatus::CREATED,
-          "User perfil criado com sucesso"
+          "Perfil de usuario criado com sucesso"
         )
       end
 

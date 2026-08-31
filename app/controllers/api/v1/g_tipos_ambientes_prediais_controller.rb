@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::GTiposAmbientesPrediaisController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -17,7 +17,7 @@ class Api::V1::GTiposAmbientesPrediaisController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_tipo_ambiente_predial,
-      message: "G tipo ambiente predial encontrado com sucesso",
+      message: "Tipo de ambiente predial encontrado com sucesso",
       blueprint: GTipoAmbientePredialBlueprint
     )
   end

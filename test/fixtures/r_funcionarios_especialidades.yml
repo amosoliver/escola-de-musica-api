@@ -1,0 +1,6 @@
+one:
+  r_funcionario: one
+  r_especialidade: one
+  principal: true
+  data_inicio: 2026-01-10
+  ativo: true

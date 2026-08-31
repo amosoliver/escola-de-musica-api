@@ -16,7 +16,7 @@ module GAndares
         return Result.success(
           g_andar,
           HttpStatus::OK,
-          "G andar atualizado com sucesso"
+          "Andar atualizado com sucesso"
         )
       end
 

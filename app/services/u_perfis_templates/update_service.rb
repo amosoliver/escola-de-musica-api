@@ -16,7 +16,7 @@ module UPerfisTemplates
         return Result.success(
           u_perfil_template,
           HttpStatus::OK,
-          "U perfil template atualizado com sucesso"
+          "Perfil template atualizado com sucesso"
         )
       end
 

@@ -15,7 +15,7 @@ module GSituacoesPredios
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G situacao predio removido com sucesso"
+          "Situacao do predio removida com sucesso"
         )
       end
 

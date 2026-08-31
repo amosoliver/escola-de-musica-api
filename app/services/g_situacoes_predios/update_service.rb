@@ -16,7 +16,7 @@ module GSituacoesPredios
         return Result.success(
           g_situacao_predio,
           HttpStatus::OK,
-          "G situacao predio atualizado com sucesso"
+          "Situacao do predio atualizada com sucesso"
         )
       end
 

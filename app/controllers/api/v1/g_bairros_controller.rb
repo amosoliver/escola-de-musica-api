@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::GBairrosController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :g_cidade_id,
@@ -19,7 +19,7 @@ class Api::V1::GBairrosController < ApplicationController
   def show
     render ResponseService.success(
       data: @g_bairro,
-      message: "G bairro encontrado com sucesso",
+      message: "Bairro encontrado com sucesso",
       blueprint: GBairroBlueprint
     )
   end

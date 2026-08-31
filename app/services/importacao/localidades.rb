@@ -125,9 +125,8 @@ module Importacao
     end
 
     # Cidades sao gravadas direto a partir dos municipios do IBGE (uma consulta por
-    # estado), sem tabela intermediaria: GCidade ja carrega descricao/codigo_ibge/uf.
+    # estado), sem tabela intermediaria: GCidade fica vinculada ao estado.
     def populate_cidades
-      brasil = brasil!
       now = Time.current
       estados = GEstado.order(:uf).pluck(:id, :uf, :codigo_ibge)
       existing_by_codigo = GCidade.with_deleted.index_by(&:codigo_ibge)
@@ -152,8 +151,6 @@ module Importacao
             changed = assign_if_changed(
               existing,
               descricao: payload["nome"],
-              uf:,
-              g_pais_id: brasil.id,
               g_estado_id: estado_id,
               updated_by: TASK_USER
             )
@@ -169,9 +166,7 @@ module Importacao
           else
             inserts << {
               descricao: payload["nome"],
-              uf:,
               codigo_ibge:,
-              g_pais_id: brasil.id,
               g_estado_id: estado_id,
               created_by: TASK_USER,
               updated_by: TASK_USER,
@@ -210,8 +205,8 @@ module Importacao
     def populate_bairros
       now = Time.current
       cidades_por_codigo_municipio = GCidade.where.not(codigo_ibge: nil).pluck(:codigo_ibge, :id).to_h
-      cidades_por_nome_uf = GCidade.where.not(uf: nil).each_with_object({}) do |cidade, memo|
-        key = bairro_match_key(cidade.descricao, cidade.uf)
+      cidades_por_nome_uf = GCidade.joins(:g_estado).where.not(g_estados: { uf: nil }).each_with_object({}) do |cidade, memo|
+        key = bairro_match_key(cidade.descricao, cidade.g_estado.uf)
         memo[key] = cidade.id if key
       end
 

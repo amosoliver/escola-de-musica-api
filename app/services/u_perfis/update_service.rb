@@ -16,7 +16,7 @@ module UPerfis
         return Result.success(
           u_perfil,
           HttpStatus::OK,
-          "U perfil atualizado com sucesso"
+          "Perfil atualizado com sucesso"
         )
       end
 

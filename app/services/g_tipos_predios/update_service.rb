@@ -16,7 +16,7 @@ module GTiposPredios
         return Result.success(
           g_tipo_predio,
           HttpStatus::OK,
-          "G tipo predio atualizado com sucesso"
+          "Tipo de predio atualizado com sucesso"
         )
       end
 

@@ -16,7 +16,7 @@ module IPredios
         return Result.success(
           i_predio,
           HttpStatus::OK,
-          "I predio atualizado com sucesso"
+          "Predio atualizado com sucesso"
         )
       end
 

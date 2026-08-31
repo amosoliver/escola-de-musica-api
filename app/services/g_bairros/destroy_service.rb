@@ -15,7 +15,7 @@ module GBairros
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G bairro removido com sucesso"
+          "Bairro removido com sucesso"
         )
       end
 

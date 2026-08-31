@@ -17,7 +17,7 @@ module IBlocos
         return Result.success(
           i_bloco,
           HttpStatus::CREATED,
-          "I bloco criado com sucesso"
+          "Bloco criado com sucesso"
         )
       end
 

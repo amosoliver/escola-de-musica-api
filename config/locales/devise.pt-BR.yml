@@ -1,0 +1,25 @@
+pt-BR:
+  devise:
+    failure:
+      invalid: "E-mail/CPF ou senha invalidos."
+      not_found_in_database: "E-mail/CPF ou senha invalidos."
+    passwords:
+      no_token: "Voce nao pode acessar esta pagina sem vir de um e-mail de redefinicao de senha."
+      send_instructions: "Voce recebera um e-mail com instrucoes sobre como redefinir sua senha em poucos minutos."
+      send_paranoid_instructions: "Se o seu login existe em nossa base de dados, voce recebera instrucoes de recuperacao de senha em poucos minutos."
+      updated: "Sua senha foi alterada com sucesso."
+      updated_not_active: "Sua senha foi alterada com sucesso."
+    mailer:
+      reset_password_instructions:
+        subject: "Redefinicao de senha"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            login:
+              blank: "nao pode ficar em branco"
+              not_found: "nao encontrado"
+    attributes:
+      user:
+        login: "Login"

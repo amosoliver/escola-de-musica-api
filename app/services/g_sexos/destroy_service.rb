@@ -15,7 +15,7 @@ module GSexos
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G sexo removido com sucesso"
+          "Sexo removido com sucesso"
         )
       end
 

@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::API
   include ApiResponses
+  include JwtAuthenticatable
+  include TenantScoped
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  skip_before_action :authenticate_request!, if: :devise_controller?
   rescue_from StandardError, with: :internal_server_error
   rescue_from ActionDispatch::Http::Parameters::ParseError, with: :handle_parse_error
   rescue_from ActionController::ParameterMissing, with: :parameter_missing

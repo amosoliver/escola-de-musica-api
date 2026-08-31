@@ -2,7 +2,7 @@
 
 one:
   g_unidade_gestora: one
-  tipo_unidade: MyString
+  g_tipo_unidade_gestora: one
   nome: MyString
   razao_social: MyString
   nome_fantasia: MyString
@@ -18,7 +18,7 @@ one:
 
 two:
   g_unidade_gestora: two
-  tipo_unidade: MyString
+  g_tipo_unidade_gestora: two
   nome: MyString
   razao_social: MyString
   nome_fantasia: MyString

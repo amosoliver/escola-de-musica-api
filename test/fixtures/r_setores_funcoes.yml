@@ -1,0 +1,17 @@
+coord_pedagogica_coordenador:
+  r_setor: coordenacao_pedagogica
+  r_funcao: two
+  principal: true
+  ativo: true
+
+corpo_docente_professor:
+  r_setor: corpo_docente
+  r_funcao: one
+  principal: true
+  ativo: true
+
+tesouraria_coordenador:
+  r_setor: tesouraria
+  r_funcao: two
+  principal: true
+  ativo: true

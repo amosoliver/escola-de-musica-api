@@ -1,0 +1,7 @@
+one:
+  g_pessoa: one
+  g_unidade_gestora: one
+  r_tipo_vinculo: one
+  matricula: FUNC-001
+  data_inicio: 2026-01-10
+  ativo: true

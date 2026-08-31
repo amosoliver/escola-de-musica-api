@@ -17,7 +17,7 @@ module GBairros
         return Result.success(
           g_bairro,
           HttpStatus::CREATED,
-          "G bairro criado com sucesso"
+          "Bairro criado com sucesso"
         )
       end
 

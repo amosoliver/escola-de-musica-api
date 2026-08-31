@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersPerfisController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :user_id,
@@ -13,25 +13,31 @@ class Api::V1::UsersPerfisController < ApplicationController
   before_action :set_user_perfil, only: %i[show update destroy]
 
   def index
-    query = UserPerfil.includes(associations_for_index).ransack(params[:q])
+    query = scoped_users_perfis.includes(associations_for_index).ransack(params[:q])
     render ResponseService.pagy_index(query.result, params, self, blueprint: UserPerfilBlueprint)
   end
 
   def show
     render ResponseService.success(
       data: @user_perfil,
-      message: "User perfil encontrado com sucesso",
+      message: "Perfil de usuario encontrado com sucesso",
       blueprint: UserPerfilBlueprint
     )
   end
 
   def create
-    result = UsersPerfis::CreateService.call(params: user_perfil_params)
+    attributes = enforce_tenant_attribute!(user_perfil_params.to_h.deep_symbolize_keys)
+    return if performed?
+
+    result = UsersPerfis::CreateService.call(params: attributes)
     render ResponseService.handle_service_result(result, blueprint: UserPerfilBlueprint)
   end
 
   def update
-    result = UsersPerfis::UpdateService.call(user_perfil: @user_perfil, params: user_perfil_params)
+    attributes = enforce_tenant_attribute!(user_perfil_params.to_h.deep_symbolize_keys)
+    return if performed?
+
+    result = UsersPerfis::UpdateService.call(user_perfil: @user_perfil, params: attributes)
     render ResponseService.handle_service_result(result, blueprint: UserPerfilBlueprint)
   end
 
@@ -43,11 +49,15 @@ class Api::V1::UsersPerfisController < ApplicationController
   private
 
   def set_user_perfil
-    @user_perfil = UserPerfil.find(params[:id])
+    @user_perfil = scoped_users_perfis.find(params[:id])
   end
 
   def associations_for_index
     @associations_for_index ||= UserPerfil.reflect_on_all_associations(:belongs_to).map(&:name)
+  end
+
+  def scoped_users_perfis
+    tenant_scope(UserPerfil.all)
   end
 
   def user_perfil_params

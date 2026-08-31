@@ -15,7 +15,7 @@ module GUnidadesGestoras
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G unidade gestora removido com sucesso"
+          "Unidade gestora removida com sucesso"
         )
       end
 

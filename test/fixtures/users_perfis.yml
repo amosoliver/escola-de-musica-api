@@ -4,10 +4,10 @@ one:
   user: one
   u_perfil: one
   g_unidade_gestora: one
-  ativo: false
+  ativo: true
 
 two:
   user: two
   u_perfil: two
   g_unidade_gestora: two
-  ativo: false
+  ativo: true

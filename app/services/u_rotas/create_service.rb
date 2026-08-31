@@ -17,7 +17,7 @@ module URotas
         return Result.success(
           u_rota,
           HttpStatus::CREATED,
-          "U rota criado com sucesso"
+          "Rota criada com sucesso"
         )
       end
 

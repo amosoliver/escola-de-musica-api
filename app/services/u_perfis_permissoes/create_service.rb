@@ -17,7 +17,7 @@ module UPerfisPermissoes
         return Result.success(
           u_perfil_permissao,
           HttpStatus::CREATED,
-          "U perfil permissao criado com sucesso"
+          "Perfil permissao criado com sucesso"
         )
       end
 

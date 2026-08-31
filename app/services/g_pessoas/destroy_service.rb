@@ -15,7 +15,7 @@ module GPessoas
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G pessoa removido com sucesso"
+          "Pessoa removida com sucesso"
         )
       end
 

@@ -1,11 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  descricao: MyString
-  codigo: MyString
-  ativo: false
+  descricao: Administrador da Plataforma
+  codigo: ADMIN_PLATAFORMA
+  ativo: true
 
 two:
-  descricao: MyString
-  codigo: MyString
-  ativo: false
+  descricao: Administrador da Escola
+  codigo: ADMIN_ESCOLA
+  ativo: true
+
+aluno:
+  descricao: Aluno
+  codigo: ALUNO
+  ativo: true
+
+responsavel_legal:
+  descricao: Responsavel Legal
+  codigo: RESPONSAVEL_LEGAL
+  ativo: true

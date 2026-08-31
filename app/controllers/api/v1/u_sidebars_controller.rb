@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::USidebarsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :u_template_id,
@@ -21,7 +21,7 @@ class Api::V1::USidebarsController < ApplicationController
   def show
     render ResponseService.success(
       data: @u_sidebar,
-      message: "U sidebar encontrado com sucesso",
+      message: "Sidebar encontrada com sucesso",
       blueprint: USidebarBlueprint
     )
   end

@@ -17,7 +17,7 @@ module IAmbientesPrediais
         return Result.success(
           i_ambiente_predial,
           HttpStatus::CREATED,
-          "I ambiente predial criado com sucesso"
+          "Ambiente predial criado com sucesso"
         )
       end
 

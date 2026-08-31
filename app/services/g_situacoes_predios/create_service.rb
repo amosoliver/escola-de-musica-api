@@ -17,7 +17,7 @@ module GSituacoesPredios
         return Result.success(
           g_situacao_predio,
           HttpStatus::CREATED,
-          "G situacao predio criado com sucesso"
+          "Situacao do predio criada com sucesso"
         )
       end
 

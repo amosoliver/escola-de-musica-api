@@ -15,7 +15,7 @@ module URotas
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U rota removido com sucesso"
+          "Rota removida com sucesso"
         )
       end
 

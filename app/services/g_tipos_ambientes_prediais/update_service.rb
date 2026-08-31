@@ -16,7 +16,7 @@ module GTiposAmbientesPrediais
         return Result.success(
           g_tipo_ambiente_predial,
           HttpStatus::OK,
-          "G tipo ambiente predial atualizado com sucesso"
+          "Tipo de ambiente predial atualizado com sucesso"
         )
       end
 

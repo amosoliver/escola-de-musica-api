@@ -16,7 +16,7 @@ module GSexos
         return Result.success(
           g_sexo,
           HttpStatus::OK,
-          "G sexo atualizado com sucesso"
+          "Sexo atualizado com sucesso"
         )
       end
 

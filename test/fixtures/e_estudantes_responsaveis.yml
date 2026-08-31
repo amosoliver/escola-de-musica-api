@@ -1,0 +1,9 @@
+one:
+  e_estudante: one
+  e_responsavel: one
+  g_parentesco: one
+  responsavel_principal: true
+  responsavel_financeiro: true
+  autorizado_buscar: true
+  data_inicio: 2026-01-01
+  ativo: true

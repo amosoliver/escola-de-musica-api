@@ -16,7 +16,7 @@ module URotasPermissoes
         return Result.success(
           u_rota_permissao,
           HttpStatus::OK,
-          "U rota permissao atualizado com sucesso"
+          "Permissao de rota atualizada com sucesso"
         )
       end
 

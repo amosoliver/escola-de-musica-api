@@ -16,7 +16,7 @@ module GCidades
         return Result.success(
           g_cidade,
           HttpStatus::OK,
-          "G cidade atualizado com sucesso"
+          "Cidade atualizada com sucesso"
         )
       end
 

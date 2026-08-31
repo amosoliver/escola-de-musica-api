@@ -1,0 +1,11 @@
+one:
+  r_funcao: one
+  u_perfil: two
+  principal: true
+  ativo: true
+
+two:
+  r_funcao: two
+  u_perfil: one
+  principal: true
+  ativo: true

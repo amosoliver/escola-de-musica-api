@@ -15,7 +15,7 @@ module GAndares
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "G andar removido com sucesso"
+          "Andar removido com sucesso"
         )
       end
 

@@ -15,7 +15,7 @@ module USidebarItens
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "U sidebar item removido com sucesso"
+          "Item de sidebar removido com sucesso"
         )
       end
 

@@ -17,7 +17,7 @@ module UTemplates
         return Result.success(
           u_template,
           HttpStatus::CREATED,
-          "U template criado com sucesso"
+          "Template criado com sucesso"
         )
       end
 

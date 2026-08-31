@@ -16,7 +16,7 @@ module UTemplates
         return Result.success(
           u_template,
           HttpStatus::OK,
-          "U template atualizado com sucesso"
+          "Template atualizado com sucesso"
         )
       end
 

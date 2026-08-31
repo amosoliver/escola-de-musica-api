@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UPermissoesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -21,7 +21,7 @@ class Api::V1::UPermissoesController < ApplicationController
   def show
     render ResponseService.success(
       data: @u_permissao,
-      message: "U permissao encontrado com sucesso",
+      message: "Permissao encontrada com sucesso",
       blueprint: UPermissaoBlueprint
     )
   end

@@ -16,7 +16,7 @@ module UPermissoes
         return Result.success(
           u_permissao,
           HttpStatus::OK,
-          "U permissao atualizado com sucesso"
+          "Permissao atualizada com sucesso"
         )
       end
 

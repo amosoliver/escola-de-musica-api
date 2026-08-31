@@ -1,0 +1,30 @@
+diretoria_geral:
+  g_unidade_gestora: one
+  codigo: DIRETORIA_GERAL
+  descricao: Diretoria Geral
+  ordem: 1
+  ativo: true
+
+coordenacao_pedagogica:
+  g_unidade_gestora: one
+  r_setor_pai: diretoria_geral
+  codigo: COORDENACAO_PEDAGOGICA
+  descricao: Coordenacao Pedagogica
+  ordem: 2
+  ativo: true
+
+corpo_docente:
+  g_unidade_gestora: one
+  r_setor_pai: coordenacao_pedagogica
+  codigo: CORPO_DOCENTE
+  descricao: Corpo Docente
+  ordem: 3
+  ativo: true
+
+tesouraria:
+  g_unidade_gestora: one
+  r_setor_pai: diretoria_geral
+  codigo: TESOURARIA
+  descricao: Tesouraria
+  ordem: 4
+  ativo: true

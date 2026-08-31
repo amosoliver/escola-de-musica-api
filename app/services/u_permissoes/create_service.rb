@@ -17,7 +17,7 @@ module UPermissoes
         return Result.success(
           u_permissao,
           HttpStatus::CREATED,
-          "U permissao criado com sucesso"
+          "Permissao criada com sucesso"
         )
       end
 

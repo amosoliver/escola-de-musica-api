@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UTemplatesController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   PERMITTED_ATTRIBUTES = [
     :descricao,
@@ -21,7 +21,7 @@ class Api::V1::UTemplatesController < ApplicationController
   def show
     render ResponseService.success(
       data: @u_template,
-      message: "U template encontrado com sucesso",
+      message: "Template encontrado com sucesso",
       blueprint: UTemplateBlueprint
     )
   end

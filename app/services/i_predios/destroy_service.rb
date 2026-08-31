@@ -15,7 +15,7 @@ module IPredios
         return Result.success(
           nil,
           HttpStatus::NO_CONTENT,
-          "I predio removido com sucesso"
+          "Predio removido com sucesso"
         )
       end
 
