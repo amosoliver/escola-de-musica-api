@@ -27,7 +27,7 @@ gem "audit_log_rails", "~> 0.1.1"
 gem "swagger_docs_rails"
 
 group :development, :test do
-  gem "minitest", "~> 5.27"
+  gem "minitest", "~> 6.0"
   gem "simplecov", require: false
   gem "simplecov-cobertura", "~> 2.1", require: false
   gem "mocha"
