@@ -7,6 +7,5 @@ class RFuncionarioBlueprint < ApplicationBlueprint
   association :g_unidade_gestora, blueprint: GUnidadeGestoraSummaryBlueprint
   association :r_tipo_vinculo, blueprint: RTipoVinculoBlueprint
   association :r_funcionarios_especialidades, blueprint: RFuncionarioEspecialidadeBlueprint
-  association :r_funcionarios_funcoes, blueprint: RFuncionarioFuncaoBlueprint
   association :r_funcionarios_setores_funcoes, blueprint: RFuncionarioSetorFuncaoBlueprint
 end

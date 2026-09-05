@@ -28,19 +28,6 @@ class RFuncionarioTest < ActiveSupport::TestCase
     assert_includes funcionario.errors[:r_funcionarios_especialidades], "permite apenas uma especialidade principal ativa"
   end
 
-  test "nao aceita mais de uma funcao principal ativa" do
-    funcionario = r_funcionarios(:one)
-    funcionario.r_funcionarios_funcoes.build(
-      r_funcao: r_funcoes(:two),
-      principal: true,
-      data_inicio: Date.new(2026, 2, 1),
-      ativo: true
-    )
-
-    assert_not funcionario.valid?
-    assert_includes funcionario.errors[:r_funcionarios_funcoes], "permite apenas uma funcao principal ativa"
-  end
-
   test "nao aceita mais de um vinculo principal ativo de setor-funcao" do
     funcionario = r_funcionarios(:one)
     funcionario.r_funcionarios_setores_funcoes.build(

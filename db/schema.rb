@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_05_000003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -152,6 +152,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
     t.index ["g_cidade_id"], name: "index_g_bairros_on_g_cidade_id"
   end
 
+  create_table "g_categorias_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_g_categorias_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_g_categorias_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_g_categorias_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
   create_table "g_cidades", force: :cascade do |t|
     t.string "codigo_ibge"
     t.datetime "created_at", null: false
@@ -163,6 +177,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
     t.string "updated_by"
     t.index ["deleted_at"], name: "index_g_cidades_on_deleted_at"
     t.index ["g_estado_id"], name: "index_g_cidades_on_g_estado_id"
+  end
+
+  create_table "g_classificacoes_instrumentos", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_g_classificacoes_instrumentos_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_g_classificacoes_instrumentos_on_deleted_at"
+    t.index ["descricao"], name: "index_g_classificacoes_instrumentos_on_descricao", unique: true, where: "(deleted_at IS NULL)"
   end
 
   create_table "g_estados", force: :cascade do |t|
@@ -178,6 +206,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
     t.index ["codigo_ibge"], name: "index_g_estados_on_codigo_ibge", unique: true
     t.index ["deleted_at"], name: "index_g_estados_on_deleted_at"
     t.index ["g_pais_id"], name: "index_g_estados_on_g_pais_id"
+  end
+
+  create_table "g_instrumentos", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.bigint "g_tipo_instrumento_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_g_instrumentos_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_g_instrumentos_on_deleted_at"
+    t.index ["descricao"], name: "index_g_instrumentos_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["g_tipo_instrumento_id"], name: "index_g_instrumentos_on_g_tipo_instrumento_id"
   end
 
   create_table "g_necessidades_especificas", force: :cascade do |t|
@@ -269,6 +313,39 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
     t.datetime "updated_at", null: false
     t.string "updated_by"
     t.index ["deleted_at"], name: "index_g_tipos_ambientes_prediais_on_deleted_at"
+  end
+
+  create_table "g_tipos_instrumentos", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.bigint "g_classificacao_instrumento_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_g_tipos_instrumentos_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_g_tipos_instrumentos_on_deleted_at"
+    t.index ["descricao"], name: "index_g_tipos_instrumentos_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["g_classificacao_instrumento_id"], name: "index_g_tipos_instrumentos_on_g_classificacao_instrumento_id"
+  end
+
+  create_table "g_tipos_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.bigint "g_categoria_patrimonio_id", null: false
+    t.boolean "representa_instrumento", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_g_tipos_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_g_tipos_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_g_tipos_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["g_categoria_patrimonio_id"], name: "index_g_tipos_patrimonios_on_g_categoria_patrimonio_id"
   end
 
   create_table "g_tipos_predios", force: :cascade do |t|
@@ -411,6 +488,455 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
     t.index ["g_situacao_predio_id"], name: "index_i_predios_on_g_situacao_predio_id"
     t.index ["g_tipo_predio_id"], name: "index_i_predios_on_g_tipo_predio_id"
     t.index ["g_unidade_gestora_id"], name: "index_i_predios_on_g_unidade_gestora_id"
+  end
+
+  create_table "p_baixas_patrimonios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_baixa", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "deleted_at"
+    t.string "documento"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.text "justificativa", null: false
+    t.string "numero_documento"
+    t.text "observacao"
+    t.bigint "p_destino_externo_id"
+    t.bigint "p_movimentacao_patrimonio_id"
+    t.bigint "p_patrimonio_id", null: false
+    t.bigint "p_tipo_baixa_patrimonio_id", null: false
+    t.bigint "r_funcionario_id"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.decimal "valor", precision: 15, scale: 2
+    t.index ["data_baixa"], name: "index_p_baixas_patrimonios_on_data_baixa"
+    t.index ["deleted_at"], name: "index_p_baixas_patrimonios_on_deleted_at"
+    t.index ["g_unidade_gestora_id"], name: "index_p_baixas_patrimonios_on_g_unidade_gestora_id"
+    t.index ["p_destino_externo_id"], name: "index_p_baixas_patrimonios_on_p_destino_externo_id"
+    t.index ["p_movimentacao_patrimonio_id"], name: "index_p_baixas_patrimonios_on_p_movimentacao_patrimonio_id"
+    t.index ["p_patrimonio_id"], name: "idx_p_baixas_patrimonios_unica", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["p_patrimonio_id"], name: "index_p_baixas_patrimonios_on_p_patrimonio_id"
+    t.index ["p_tipo_baixa_patrimonio_id"], name: "index_p_baixas_patrimonios_on_p_tipo_baixa_patrimonio_id"
+    t.index ["r_funcionario_id"], name: "index_p_baixas_patrimonios_on_r_funcionario_id"
+  end
+
+  create_table "p_destinos_externos", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "cep"
+    t.string "complemento"
+    t.string "cpf_cnpj"
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "email"
+    t.bigint "g_bairro_id"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.string "logradouro"
+    t.string "nome", null: false
+    t.string "numero"
+    t.text "observacao"
+    t.string "razao_social"
+    t.string "telefone"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["cpf_cnpj"], name: "index_p_destinos_externos_on_cpf_cnpj"
+    t.index ["deleted_at"], name: "index_p_destinos_externos_on_deleted_at"
+    t.index ["g_bairro_id"], name: "index_p_destinos_externos_on_g_bairro_id"
+    t.index ["g_unidade_gestora_id"], name: "index_p_destinos_externos_on_g_unidade_gestora_id"
+  end
+
+  create_table "p_devolucoes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_devolucao", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "deleted_at"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.text "observacao"
+    t.bigint "p_emprestimo_id", null: false
+    t.bigint "r_funcionario_recebimento_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["data_devolucao"], name: "index_p_devolucoes_on_data_devolucao"
+    t.index ["deleted_at"], name: "index_p_devolucoes_on_deleted_at"
+    t.index ["g_unidade_gestora_id"], name: "index_p_devolucoes_on_g_unidade_gestora_id"
+    t.index ["p_emprestimo_id"], name: "index_p_devolucoes_on_p_emprestimo_id"
+    t.index ["r_funcionario_recebimento_id"], name: "index_p_devolucoes_on_r_funcionario_recebimento_id"
+  end
+
+  create_table "p_devolucoes_itens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.text "descricao_avaria"
+    t.text "observacao"
+    t.bigint "p_devolucao_id", null: false
+    t.bigint "p_emprestimo_item_id", null: false
+    t.bigint "p_estado_conservacao_patrimonio_id", null: false
+    t.boolean "possui_avaria", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["deleted_at"], name: "index_p_devolucoes_itens_on_deleted_at"
+    t.index ["p_devolucao_id"], name: "index_p_devolucoes_itens_on_p_devolucao_id"
+    t.index ["p_emprestimo_item_id"], name: "idx_p_devolucoes_itens_emprestimo_item", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["p_emprestimo_item_id"], name: "index_p_devolucoes_itens_on_p_emprestimo_item_id"
+    t.index ["p_estado_conservacao_patrimonio_id"], name: "index_p_devolucoes_itens_on_p_estado_conservacao_patrimonio_id"
+    t.check_constraint "NOT possui_avaria OR descricao_avaria IS NOT NULL", name: "p_devolucoes_itens_avaria_descricao"
+  end
+
+  create_table "p_emprestimos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_emprestimo", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "data_prevista_devolucao"
+    t.datetime "deleted_at"
+    t.bigint "g_pessoa_id", null: false
+    t.bigint "g_unidade_gestora_id", null: false
+    t.string "numero_emprestimo", null: false
+    t.text "observacao"
+    t.bigint "p_status_emprestimo_patrimonio_id", null: false
+    t.bigint "r_funcionario_entrega_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["data_prevista_devolucao"], name: "index_p_emprestimos_on_data_prevista_devolucao"
+    t.index ["deleted_at"], name: "index_p_emprestimos_on_deleted_at"
+    t.index ["g_pessoa_id"], name: "index_p_emprestimos_on_g_pessoa_id"
+    t.index ["g_unidade_gestora_id", "numero_emprestimo"], name: "idx_p_emprestimos_unidade_numero", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["g_unidade_gestora_id"], name: "index_p_emprestimos_on_g_unidade_gestora_id"
+    t.index ["p_status_emprestimo_patrimonio_id"], name: "index_p_emprestimos_on_p_status_emprestimo_patrimonio_id"
+    t.index ["r_funcionario_entrega_id"], name: "index_p_emprestimos_on_r_funcionario_entrega_id"
+  end
+
+  create_table "p_emprestimos_itens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.text "observacao_entrega"
+    t.bigint "p_emprestimo_id", null: false
+    t.bigint "p_estado_conservacao_patrimonio_id", null: false
+    t.bigint "p_patrimonio_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["deleted_at"], name: "index_p_emprestimos_itens_on_deleted_at"
+    t.index ["p_emprestimo_id", "p_patrimonio_id"], name: "idx_p_emprestimos_itens_unico", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["p_emprestimo_id"], name: "index_p_emprestimos_itens_on_p_emprestimo_id"
+    t.index ["p_estado_conservacao_patrimonio_id"], name: "idx_on_p_estado_conservacao_patrimonio_id_72f96206dc"
+    t.index ["p_patrimonio_id"], name: "index_p_emprestimos_itens_on_p_patrimonio_id"
+  end
+
+  create_table "p_estados_conservacoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.integer "ordem", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_estados_conservacoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_estados_conservacoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_estados_conservacoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["ordem"], name: "index_p_estados_conservacoes_patrimonios_on_ordem", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_inventarios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_fim"
+    t.datetime "data_inicio", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.boolean "encerrado", default: false, null: false
+    t.bigint "g_unidade_gestora_id", null: false
+    t.bigint "i_ambiente_predial_id"
+    t.bigint "i_bloco_id"
+    t.bigint "i_predio_id"
+    t.text "observacao"
+    t.bigint "r_funcionario_responsavel_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["data_inicio"], name: "index_p_inventarios_on_data_inicio"
+    t.index ["deleted_at"], name: "index_p_inventarios_on_deleted_at"
+    t.index ["g_unidade_gestora_id"], name: "index_p_inventarios_on_g_unidade_gestora_id"
+    t.index ["i_ambiente_predial_id"], name: "index_p_inventarios_on_i_ambiente_predial_id"
+    t.index ["i_bloco_id"], name: "index_p_inventarios_on_i_bloco_id"
+    t.index ["i_predio_id"], name: "index_p_inventarios_on_i_predio_id"
+    t.index ["r_funcionario_responsavel_id"], name: "index_p_inventarios_on_r_funcionario_responsavel_id"
+  end
+
+  create_table "p_inventarios_itens", force: :cascade do |t|
+    t.datetime "conferido_em"
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.boolean "encontrado", default: false, null: false
+    t.bigint "i_ambiente_predial_encontrado_id"
+    t.boolean "localizacao_divergente", default: false, null: false
+    t.text "observacao"
+    t.bigint "p_estado_conservacao_patrimonio_id"
+    t.bigint "p_inventario_id", null: false
+    t.bigint "p_patrimonio_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["deleted_at"], name: "index_p_inventarios_itens_on_deleted_at"
+    t.index ["i_ambiente_predial_encontrado_id"], name: "index_p_inventarios_itens_on_i_ambiente_predial_encontrado_id"
+    t.index ["p_estado_conservacao_patrimonio_id"], name: "idx_on_p_estado_conservacao_patrimonio_id_df316eeeb8"
+    t.index ["p_inventario_id", "p_patrimonio_id"], name: "idx_p_inventarios_itens_unico", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["p_inventario_id"], name: "index_p_inventarios_itens_on_p_inventario_id"
+    t.index ["p_patrimonio_id"], name: "index_p_inventarios_itens_on_p_patrimonio_id"
+  end
+
+  create_table "p_manutencoes_patrimonios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_conclusao"
+    t.datetime "data_inicio"
+    t.datetime "data_prevista"
+    t.datetime "data_solicitacao", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "deleted_at"
+    t.text "descricao_problema", null: false
+    t.text "descricao_servico"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.text "observacao"
+    t.bigint "p_destino_externo_id"
+    t.bigint "p_patrimonio_id", null: false
+    t.bigint "p_status_manutencao_patrimonio_id", null: false
+    t.bigint "p_tipo_manutencao_patrimonio_id", null: false
+    t.bigint "r_funcionario_solicitante_id"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.decimal "valor_estimado", precision: 15, scale: 2
+    t.decimal "valor_realizado", precision: 15, scale: 2
+    t.index ["data_prevista"], name: "index_p_manutencoes_patrimonios_on_data_prevista"
+    t.index ["deleted_at"], name: "index_p_manutencoes_patrimonios_on_deleted_at"
+    t.index ["g_unidade_gestora_id"], name: "index_p_manutencoes_patrimonios_on_g_unidade_gestora_id"
+    t.index ["p_destino_externo_id"], name: "index_p_manutencoes_patrimonios_on_p_destino_externo_id"
+    t.index ["p_patrimonio_id"], name: "index_p_manutencoes_patrimonios_on_p_patrimonio_id"
+    t.index ["p_status_manutencao_patrimonio_id"], name: "idx_on_p_status_manutencao_patrimonio_id_50ae1d1e56"
+    t.index ["p_tipo_manutencao_patrimonio_id"], name: "idx_on_p_tipo_manutencao_patrimonio_id_ce441a80ce"
+    t.index ["r_funcionario_solicitante_id"], name: "idx_on_r_funcionario_solicitante_id_36d0139f7b"
+  end
+
+  create_table "p_movimentacoes_patrimonios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "data_hora", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "deleted_at"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.bigint "i_ambiente_predial_destino_id"
+    t.bigint "i_ambiente_predial_origem_id"
+    t.text "motivo"
+    t.text "observacao"
+    t.bigint "p_destino_externo_id"
+    t.bigint "p_patrimonio_id", null: false
+    t.bigint "p_tipo_movimentacao_patrimonio_id", null: false
+    t.bigint "r_funcionario_id"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["data_hora"], name: "index_p_movimentacoes_patrimonios_on_data_hora"
+    t.index ["deleted_at"], name: "index_p_movimentacoes_patrimonios_on_deleted_at"
+    t.index ["g_unidade_gestora_id"], name: "index_p_movimentacoes_patrimonios_on_g_unidade_gestora_id"
+    t.index ["i_ambiente_predial_destino_id"], name: "idx_on_i_ambiente_predial_destino_id_e56682b135"
+    t.index ["i_ambiente_predial_origem_id"], name: "idx_on_i_ambiente_predial_origem_id_fb36a11a11"
+    t.index ["p_destino_externo_id"], name: "index_p_movimentacoes_patrimonios_on_p_destino_externo_id"
+    t.index ["p_patrimonio_id"], name: "index_p_movimentacoes_patrimonios_on_p_patrimonio_id"
+    t.index ["p_tipo_movimentacao_patrimonio_id"], name: "idx_on_p_tipo_movimentacao_patrimonio_id_87bb9aaf2f"
+    t.index ["r_funcionario_id"], name: "index_p_movimentacoes_patrimonios_on_r_funcionario_id"
+    t.check_constraint "(i_ambiente_predial_destino_id IS NULL) <> (p_destino_externo_id IS NULL)", name: "p_movimentacoes_patrimonios_destino_exclusivo"
+  end
+
+  create_table "p_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo_barras"
+    t.string "codigo_patrimonial", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.date "data_aquisicao"
+    t.date "data_garantia_fim"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.bigint "g_instrumento_id"
+    t.bigint "g_tipo_patrimonio_id"
+    t.bigint "g_unidade_gestora_id", null: false
+    t.bigint "i_ambiente_predial_id"
+    t.string "marca"
+    t.string "modelo"
+    t.string "numero_serie"
+    t.text "observacao"
+    t.bigint "p_estado_conservacao_patrimonio_id", null: false
+    t.bigint "p_situacao_patrimonio_id", null: false
+    t.bigint "p_tipo_aquisicao_patrimonio_id"
+    t.string "qr_code"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.decimal "valor_aquisicao", precision: 15, scale: 2
+    t.index ["deleted_at"], name: "index_p_patrimonios_on_deleted_at"
+    t.index ["g_instrumento_id"], name: "index_p_patrimonios_on_g_instrumento_id"
+    t.index ["g_tipo_patrimonio_id"], name: "index_p_patrimonios_on_g_tipo_patrimonio_id"
+    t.index ["g_unidade_gestora_id", "codigo_patrimonial"], name: "idx_p_patrimonios_unidade_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["g_unidade_gestora_id"], name: "index_p_patrimonios_on_g_unidade_gestora_id"
+    t.index ["i_ambiente_predial_id"], name: "index_p_patrimonios_on_i_ambiente_predial_id"
+    t.index ["numero_serie"], name: "index_p_patrimonios_on_numero_serie"
+    t.index ["p_estado_conservacao_patrimonio_id"], name: "index_p_patrimonios_on_p_estado_conservacao_patrimonio_id"
+    t.index ["p_situacao_patrimonio_id"], name: "index_p_patrimonios_on_p_situacao_patrimonio_id"
+    t.index ["p_tipo_aquisicao_patrimonio_id"], name: "index_p_patrimonios_on_p_tipo_aquisicao_patrimonio_id"
+  end
+
+  create_table "p_patrimonios_arquivos", force: :cascade do |t|
+    t.string "arquivo", null: false
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "nome_original"
+    t.text "observacao"
+    t.bigint "p_patrimonio_id", null: false
+    t.bigint "p_tipo_arquivo_patrimonio_id", null: false
+    t.bigint "tamanho_bytes"
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["deleted_at"], name: "index_p_patrimonios_arquivos_on_deleted_at"
+    t.index ["p_patrimonio_id"], name: "index_p_patrimonios_arquivos_on_p_patrimonio_id"
+    t.index ["p_tipo_arquivo_patrimonio_id"], name: "index_p_patrimonios_arquivos_on_p_tipo_arquivo_patrimonio_id"
+  end
+
+  create_table "p_patrimonios_responsaveis", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.date "data_fim"
+    t.date "data_inicio", default: -> { "CURRENT_DATE" }, null: false
+    t.datetime "deleted_at"
+    t.bigint "g_pessoa_id", null: false
+    t.text "observacao"
+    t.bigint "p_patrimonio_id", null: false
+    t.boolean "principal", default: true, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["deleted_at"], name: "index_p_patrimonios_responsaveis_on_deleted_at"
+    t.index ["g_pessoa_id"], name: "index_p_patrimonios_responsaveis_on_g_pessoa_id"
+    t.index ["p_patrimonio_id", "g_pessoa_id"], name: "idx_p_patrimonios_responsaveis_unico", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["p_patrimonio_id"], name: "idx_p_patrimonios_responsaveis_principal", unique: true, where: "(principal AND ativo AND (deleted_at IS NULL))"
+    t.index ["p_patrimonio_id"], name: "index_p_patrimonios_responsaveis_on_p_patrimonio_id"
+  end
+
+  create_table "p_situacoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.boolean "permite_emprestimo", default: false, null: false
+    t.boolean "permite_movimentacao", default: true, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_situacoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_situacoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_situacoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_status_emprestimos_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.boolean "finalizador", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_status_emprestimos_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_status_emprestimos_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_status_emprestimos_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_status_manutencoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.boolean "finalizador", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_status_manutencoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_status_manutencoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_status_manutencoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_tipos_aquisicoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_tipos_aquisicoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_tipos_aquisicoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_tipos_aquisicoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_tipos_arquivos_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_tipos_arquivos_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_tipos_arquivos_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_tipos_arquivos_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_tipos_baixas_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_tipos_baixas_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_tipos_baixas_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_tipos_baixas_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_tipos_manutencoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_tipos_manutencoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_tipos_manutencoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_tipos_manutencoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+  end
+
+  create_table "p_tipos_movimentacoes_patrimonios", force: :cascade do |t|
+    t.boolean "ativo", default: true, null: false
+    t.string "codigo", null: false
+    t.datetime "created_at", null: false
+    t.string "created_by"
+    t.datetime "deleted_at"
+    t.string "descricao", null: false
+    t.boolean "destino_externo", default: false, null: false
+    t.boolean "destino_interno", default: false, null: false
+    t.boolean "movimentacao_definitiva", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string "updated_by"
+    t.index ["codigo"], name: "index_p_tipos_movimentacoes_patrimonios_on_codigo", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["deleted_at"], name: "index_p_tipos_movimentacoes_patrimonios_on_deleted_at"
+    t.index ["descricao"], name: "index_p_tipos_movimentacoes_patrimonios_on_descricao", unique: true, where: "(deleted_at IS NULL)"
+    t.check_constraint "NOT (destino_interno AND destino_externo)", name: "p_tipos_movimentacoes_destino_exclusivo"
   end
 
   create_table "r_especialidades", force: :cascade do |t|
@@ -778,8 +1304,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
   add_foreign_key "g_bairros", "g_cidades"
   add_foreign_key "g_cidades", "g_estados"
   add_foreign_key "g_estados", "g_paises"
+  add_foreign_key "g_instrumentos", "g_tipos_instrumentos", column: "g_tipo_instrumento_id"
   add_foreign_key "g_pessoas", "g_bairros"
   add_foreign_key "g_pessoas", "g_sexos"
+  add_foreign_key "g_tipos_instrumentos", "g_classificacoes_instrumentos", column: "g_classificacao_instrumento_id"
+  add_foreign_key "g_tipos_patrimonios", "g_categorias_patrimonios", column: "g_categoria_patrimonio_id"
   add_foreign_key "g_unidades_gestoras", "g_tipos_unidades_gestoras"
   add_foreign_key "g_unidades_gestoras", "g_unidades_gestoras"
   add_foreign_key "g_unidades_gestoras_responsaveis", "g_pessoas"
@@ -797,6 +1326,60 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_000000) do
   add_foreign_key "i_predios", "g_situacoes_predios"
   add_foreign_key "i_predios", "g_tipos_predios"
   add_foreign_key "i_predios", "g_unidades_gestoras"
+  add_foreign_key "p_baixas_patrimonios", "g_unidades_gestoras"
+  add_foreign_key "p_baixas_patrimonios", "p_destinos_externos", column: "p_destino_externo_id"
+  add_foreign_key "p_baixas_patrimonios", "p_movimentacoes_patrimonios", column: "p_movimentacao_patrimonio_id"
+  add_foreign_key "p_baixas_patrimonios", "p_patrimonios"
+  add_foreign_key "p_baixas_patrimonios", "p_tipos_baixas_patrimonios", column: "p_tipo_baixa_patrimonio_id"
+  add_foreign_key "p_baixas_patrimonios", "r_funcionarios"
+  add_foreign_key "p_destinos_externos", "g_bairros"
+  add_foreign_key "p_destinos_externos", "g_unidades_gestoras"
+  add_foreign_key "p_devolucoes", "g_unidades_gestoras"
+  add_foreign_key "p_devolucoes", "p_emprestimos"
+  add_foreign_key "p_devolucoes", "r_funcionarios", column: "r_funcionario_recebimento_id"
+  add_foreign_key "p_devolucoes_itens", "p_devolucoes", column: "p_devolucao_id"
+  add_foreign_key "p_devolucoes_itens", "p_emprestimos_itens", column: "p_emprestimo_item_id"
+  add_foreign_key "p_devolucoes_itens", "p_estados_conservacoes_patrimonios", column: "p_estado_conservacao_patrimonio_id"
+  add_foreign_key "p_emprestimos", "g_pessoas"
+  add_foreign_key "p_emprestimos", "g_unidades_gestoras"
+  add_foreign_key "p_emprestimos", "p_status_emprestimos_patrimonios", column: "p_status_emprestimo_patrimonio_id"
+  add_foreign_key "p_emprestimos", "r_funcionarios", column: "r_funcionario_entrega_id"
+  add_foreign_key "p_emprestimos_itens", "p_emprestimos"
+  add_foreign_key "p_emprestimos_itens", "p_estados_conservacoes_patrimonios", column: "p_estado_conservacao_patrimonio_id"
+  add_foreign_key "p_emprestimos_itens", "p_patrimonios"
+  add_foreign_key "p_inventarios", "g_unidades_gestoras"
+  add_foreign_key "p_inventarios", "i_ambientes_prediais"
+  add_foreign_key "p_inventarios", "i_blocos"
+  add_foreign_key "p_inventarios", "i_predios"
+  add_foreign_key "p_inventarios", "r_funcionarios", column: "r_funcionario_responsavel_id"
+  add_foreign_key "p_inventarios_itens", "i_ambientes_prediais", column: "i_ambiente_predial_encontrado_id"
+  add_foreign_key "p_inventarios_itens", "p_estados_conservacoes_patrimonios", column: "p_estado_conservacao_patrimonio_id"
+  add_foreign_key "p_inventarios_itens", "p_inventarios"
+  add_foreign_key "p_inventarios_itens", "p_patrimonios"
+  add_foreign_key "p_manutencoes_patrimonios", "g_unidades_gestoras"
+  add_foreign_key "p_manutencoes_patrimonios", "p_destinos_externos", column: "p_destino_externo_id"
+  add_foreign_key "p_manutencoes_patrimonios", "p_patrimonios"
+  add_foreign_key "p_manutencoes_patrimonios", "p_status_manutencoes_patrimonios", column: "p_status_manutencao_patrimonio_id"
+  add_foreign_key "p_manutencoes_patrimonios", "p_tipos_manutencoes_patrimonios", column: "p_tipo_manutencao_patrimonio_id"
+  add_foreign_key "p_manutencoes_patrimonios", "r_funcionarios", column: "r_funcionario_solicitante_id"
+  add_foreign_key "p_movimentacoes_patrimonios", "g_unidades_gestoras"
+  add_foreign_key "p_movimentacoes_patrimonios", "i_ambientes_prediais", column: "i_ambiente_predial_destino_id"
+  add_foreign_key "p_movimentacoes_patrimonios", "i_ambientes_prediais", column: "i_ambiente_predial_origem_id"
+  add_foreign_key "p_movimentacoes_patrimonios", "p_destinos_externos", column: "p_destino_externo_id"
+  add_foreign_key "p_movimentacoes_patrimonios", "p_patrimonios"
+  add_foreign_key "p_movimentacoes_patrimonios", "p_tipos_movimentacoes_patrimonios", column: "p_tipo_movimentacao_patrimonio_id"
+  add_foreign_key "p_movimentacoes_patrimonios", "r_funcionarios"
+  add_foreign_key "p_patrimonios", "g_instrumentos"
+  add_foreign_key "p_patrimonios", "g_tipos_patrimonios", column: "g_tipo_patrimonio_id"
+  add_foreign_key "p_patrimonios", "g_unidades_gestoras"
+  add_foreign_key "p_patrimonios", "i_ambientes_prediais"
+  add_foreign_key "p_patrimonios", "p_estados_conservacoes_patrimonios", column: "p_estado_conservacao_patrimonio_id"
+  add_foreign_key "p_patrimonios", "p_situacoes_patrimonios", column: "p_situacao_patrimonio_id"
+  add_foreign_key "p_patrimonios", "p_tipos_aquisicoes_patrimonios", column: "p_tipo_aquisicao_patrimonio_id"
+  add_foreign_key "p_patrimonios_arquivos", "p_patrimonios"
+  add_foreign_key "p_patrimonios_arquivos", "p_tipos_arquivos_patrimonios", column: "p_tipo_arquivo_patrimonio_id"
+  add_foreign_key "p_patrimonios_responsaveis", "g_pessoas"
+  add_foreign_key "p_patrimonios_responsaveis", "p_patrimonios"
   add_foreign_key "r_funcionarios", "g_pessoas"
   add_foreign_key "r_funcionarios", "g_unidades_gestoras"
   add_foreign_key "r_funcionarios", "r_tipos_vinculos"

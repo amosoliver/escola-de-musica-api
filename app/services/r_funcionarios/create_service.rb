@@ -26,9 +26,6 @@ module RFuncionarios
           raise ActiveRecord::Rollback
         end
 
-        result = RFuncionarios::SincronizarFuncoesLegadasService.call(r_funcionario:)
-        raise ActiveRecord::Rollback if result.failure?
-
         result = RFuncionarios::ProvisionarUsuariosService.call(r_funcionario:)
         raise ActiveRecord::Rollback if result.failure?
       end

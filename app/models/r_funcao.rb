@@ -3,8 +3,6 @@
 class RFuncao < ApplicationRecord
   acts_as_paranoid
 
-  has_many :r_funcionarios_funcoes, dependent: :destroy
-  has_many :r_funcionarios, through: :r_funcionarios_funcoes
   has_many :r_setores_funcoes, dependent: :destroy
   has_many :r_setores, through: :r_setores_funcoes
 

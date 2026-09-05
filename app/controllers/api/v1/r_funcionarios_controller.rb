@@ -28,15 +28,6 @@ class Api::V1::RFuncionariosController < ApplicationController
       ativo
       _destroy
     ] },
-    { r_funcionarios_funcoes_attributes: %i[
-      id
-      r_funcao_id
-      principal
-      data_inicio
-      data_fim
-      ativo
-      _destroy
-    ] },
     { r_funcionarios_setores_funcoes_attributes: %i[
       id
       r_setor_funcao_id
@@ -92,7 +83,6 @@ class Api::V1::RFuncionariosController < ApplicationController
       :g_unidade_gestora,
       :r_tipo_vinculo,
       { r_funcionarios_especialidades: :r_especialidade },
-      { r_funcionarios_funcoes: { r_funcao: { r_funcoes_perfis: :u_perfil } } },
       { r_funcionarios_setores_funcoes: { r_setor_funcao: [ :r_setor, { r_funcao: { r_funcoes_perfis: :u_perfil } } ] } }
     ]
   end

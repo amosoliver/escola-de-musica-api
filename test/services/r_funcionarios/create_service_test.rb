@@ -39,9 +39,8 @@ class RFuncionarios::CreateServiceTest < ActiveSupport::TestCase
     }
 
     assert_difference("RFuncionario.count", 1) do
-      assert_difference("RFuncionarioEspecialidade.count", 1) do
-        assert_difference("RFuncionarioSetorFuncao.count", 1) do
-          assert_difference("RFuncionarioFuncao.count", 1) do
+        assert_difference("RFuncionarioEspecialidade.count", 1) do
+          assert_difference("RFuncionarioSetorFuncao.count", 1) do
             assert_difference("User.count", 1) do
               assert_difference("UserPerfil.count", 1) do
                 result = RFuncionarios::CreateService.call(params:)
@@ -52,12 +51,10 @@ class RFuncionarios::CreateServiceTest < ActiveSupport::TestCase
                 assert_equal g_unidades_gestoras(:one), funcionario.g_unidade_gestora
                 assert_equal 1, funcionario.r_funcionarios_especialidades.size
                 assert_equal 1, funcionario.r_funcionarios_setores_funcoes.size
-                assert_equal [ r_funcoes(:one).id ], funcionario.r_funcionarios_funcoes.pluck(:r_funcao_id)
                 assert_equal [ u_perfis(:two).codigo ], funcionario.g_pessoa.user.u_perfis.pluck(:codigo)
                 assert_equal 1, ActionMailer::Base.deliveries.size
-              end
-            end
           end
+        end
         end
       end
     end

@@ -51,7 +51,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular "r_setor_funcao", "r_setores_funcoes"
   inflect.irregular "r_funcionario", "r_funcionarios"
   inflect.irregular "r_funcionario_especialidade", "r_funcionarios_especialidades"
-  inflect.irregular "r_funcionario_funcao", "r_funcionarios_funcoes"
   inflect.irregular "r_funcionario_setor_funcao", "r_funcionarios_setores_funcoes"
   inflect.irregular "r_funcao_perfil", "r_funcoes_perfis"
 end
