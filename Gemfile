@@ -29,7 +29,7 @@ gem "swagger_docs_rails"
 group :development, :test do
   gem "minitest", "~> 5.27"
   gem "simplecov", require: false
-  gem "simplecov-cobertura", "~> 2.1", require: false
+  gem "simplecov-cobertura", "~> 4.0", require: false
   gem "mocha"
   gem "ostruct"
   gem "byebug"
